@@ -1,57 +1,60 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./home.css";
+const Home = () => {
 
-import React, { useState } from "react";
-import axios from "axios";
-import "./upload.css";
-
-const Upload = () => {
-  const [formData, setFormData] = useState({ title: "", description: "", image: null });
-  const [message, setMessage] = useState("");
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("image", formData.image);
-    try {
-      await axios.post("http://localhost:5000/upload", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setMessage("Recipe uploaded successfully!");
-    } catch (error) {
-      setMessage("Error uploading recipe");
-    }
-  };
   return (
-    <div className="body">
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="card p-4 w-50">
-          <h2 className="text-center mb-3">Upload Recipe</h2>
-          {message && <p className="text-center text-success">{message}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Recipe Title</label>
-              <input type="text" name="title" className="form-control" placeholder="Enter recipe title" required onChange={handleChange} />
+    <div>
+      <br/><br/><br/><br/>
+      <div className="carousel-container">
+        <div id="fadeCarousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src="/cover4.jpg" className="d-block w-100" alt="Cooking"/>
+              <div className="carousel-caption d-none d-md-block">
+                <h5>Delicious Food</h5>
+                <p>Explore mouth-watering dishes from around the world.</p>
+              </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label">Description</label>
-              <textarea name="description" className="form-control" rows="3" placeholder="Enter description" required onChange={handleChange}></textarea>
+            <div className="carousel-item">
+              <img src="/Paratha.jpg" className="d-block w-100" alt="Cooking"/>
+              <div className="carousel-caption d-none d-md-block">
+                <h5>Kitchen Expert</h5>
+                <p>Cook your favorite recipes in a perfect setup.</p>
+              </div>
             </div>
-            <div className="mb-3">
-              <label className="form-label">Upload Recipe Image</label>
-              <input type="file" className="form-control" required onChange={handleFileChange} />
+            <div className="carousel-item">
+              <img src="/3ccf6184-3c16-4218-90f1-8ea7dd12f167.jpg" className="d-block w-100" alt="Cooking"/>
+              <div className="carousel-caption d-none d-md-block">
+                <h5>Cooking Recipes</h5>
+                <p>Find the best recipes tailored to your taste.</p>
+              </div>
             </div>
-            <button type="submit" className="btn btn-primary w-100">Submit Recipe</button>
-          </form>
+          </div>
+
+          <button className="carousel-control-prev" type="button" data-bs-target="#fadeCarousel" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#fadeCarousel" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
+      <br/><br/><br/>
+      <center>
+        <h1>Dishcover 🥘</h1>
+        <h5>Crafting and sharing the perfect plate by discovering it - An interactive recipe-sharing platform 🍴</h5>
+        <br/><br/><hr/><br/>
+        <h3>Welcome to Dishcover, the ultimate interactive recipe-sharing platform where food lovers unite!</h3>
+        <h5>
+          Whether you're experimenting in the kitchen or looking for inspiration, Dishcover connects you with a vibrant
+          community of chefs and home cooks. Come, join, and bring your culinary creativity to life.
+        </h5>
+      </center>
     </div>
   );
 };
 
-export default Upload;
+export default Home;
